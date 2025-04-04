@@ -117,7 +117,9 @@
     box-shadow: 0 6px 30px rgba(100, 255, 218, 0.3);
   }
   
-  /* === ANIMATIONS === */
+  
+  
+  /* === animatii === */
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
