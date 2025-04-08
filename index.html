@@ -6,19 +6,102 @@
   <title>Revelation Camp</title>
   <link rel="stylesheet" href="animatii.css">
   <style>
+
+.logo-fixed {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+  padding: 5px;
+}
+
+.logo-fixed img {
+  height: 50px;
+  width: auto;
+  border-radius: 8px;
+}
+
     .reveal {
       opacity: 0;
-      transform: translateX(-50px);
+      transform: translateY(40px);
       transition: all 0.8s ease-out;
     }
 
     .reveal.active {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .slider-container {
+      position: relative;
+      max-width: 700px;
+      margin: 2rem auto;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+
+.slide img {
+  max-height: 400px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+    .slider-buttons {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .slider-buttons button {
+      background-color: var(--accent);
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
+
+  <div class="logo-fixed">
+    <img src="imagini/sf3.png" alt="Logo Revelation Camp">
+  </div>
+  
   <header class="reveal">
     <img src="imagini/Logo Alb.png" alt="Revelation Camp Logo">
     <p class="subtitle">Această tabără își propune să fie locul de REVELAȚIE pentru generația <span>Z</span>.</p>
@@ -29,52 +112,134 @@
     <p class="reveal"><strong>Temă:</strong> „Trăiesc prin ISUS”</p>
     <p class="reveal"><strong>Perioadă:</strong> 11–15 August 2025</p>
     <p class="reveal"><strong>Locație:</strong> Herina, județul Bistrița-Năsăud</p>
-    <p class="reveal">Revelation Camp este o tabără de vară dedicată tinerilor care doresc o experiență spirituală profundă, să se conecteze prin închinare, să crească împreună cu alți tineri și să aprofundeze relația cu Dumnezeu.</p>
+    <p class="reveal">Revelation Camp este o tabără de vară dedicată tinerilor care doresc o experiență spirituală profundă, să se conecteze prin închinare, să crească împreună cu alți tineri și să aprofundeze relația cu Dumnezeu.</p>
     <p class="quote reveal">„Am fost răstignit împreună cu Hristos și trăiesc, dar nu mai trăiesc eu, ci Hristos trăiește în mine.” <br>Galateni 2:20</p>
-    <a class="btn-register reveal" href="https://forms.gle/WjQYtLMrpKG6arn37" target="_blank">Înscrie-te acum</a>
+    <p class="reveal">Ai peste 14 ani și vrei să te apropii de Dumnezeu și să îți faci prieteni noi?</p>
+    <a class="btn-register pulse" href="https://forms.gle/WjQYtLMrpKG6arn37" target="_blank">Înscrie-te acum</a>
     <br>
     <img class="reveal" src="imagini/Afis2025.png" alt="Afiș Revelation Camp 2025" style="width: 30%; max-width: 600px; border-radius: 12px; margin-top: 2rem;">
   </section>
 
-  <section class="section reveal">
-    <h2 class="reveal">📸 Cum a fost anul trecut?</h2>
-    <div class="gallery">
-      <img src="imagini/1.jpg" alt="Poza tabara 1">
-      <img  src="imagini/2.jpg" alt="Poza tabara 2">
-      <img  src="imagini/3.jpg" alt="Poza tabara 3">
-      <img  src="imagini/4.jpg" alt="Poza tabara 4">
-      <img src="imagini/5.jpg" alt="Poza tabara 5">
-      <img  src="imagini/6.jpg" alt="Poza tabara 6">
-      <img  src="imagini/7.jpg" alt="Poza tabara 7">
-      <img  src="imagini/8.jpg" alt="Poza tabara 8">
-      <img  src="imagini/9.jpg" alt="Poza tabara 9">
-      <img  src="imagini/10.jpg" alt="Poza tabara 10">
-      <img  src="imagini/11.jpg" alt="Poza tabara 11">
-      <img  src="imagini/12.jpg" alt="Poza tabara 12">
-      <img  src="imagini/13.jpg" alt="Poza tabara 13">
-      <img  src="imagini/14.jpg" alt="Poza tabara 14">
+  <section class="section reveal"> 
+    <h2 class="reveal">🎤 Invitați speciali</h2>
+  
+    <div class="slider-container">
+      <div class="slider-track" id="slider-invitati">
+        <div class="slide"><img src="imagini/Marti.png" alt="Invitat 1"></div>
+        <div class="slide"><img src="imagini/Miercuri.png" alt="Invitat 2"></div>
+        <div class="slide"><img src="imagini/Joi.png" alt="Invitat 3"></div>
+      </div>  
+      <div class="slider-buttons">
+        <button onclick="moveSlide('invitati', -1)">◀</button>
+        <button onclick="moveSlide('invitati', 1)">▶</button>
+      </div>
     </div>
-  </section>
-
-  <section class="section reveal">
-    <h2 class="reveal">📅 Program</h2>
-    <p class="reveal"><strong>Luni:</strong> Sosire</p>
-    <p class="reveal"><strong>Marți:</strong></p>
-    <p class="reveal"><strong>Miercuri:</strong></p>
-    <p class="reveal"><strong>Joi:</strong></p>
-    <p class="reveal"><strong>Vineri:</strong> Încheiere</p>
   </section>
 
   <section class="section reveal">
     <h2 class="reveal">🎯 Organizare</h2>
     <p class="reveal">Eveniment organizat de Biserica Creștină Penticostală Sfânta Treime. O echipă de slujitori, familii, lideri de tineret.</p>
+    <br>
+    <p class="reveal">Echipele organizatorice:</p>
   </section>
 
-  <section class="section reveal"> 
-    <h2 class="reveal">🎤 Invitați speciali</h2>
-    <p class="reveal"><strong>unknown yet👀👀</strong></p>
+  <section class="section reveal">
+    <h2 class="reveal">📅 Program</h2>
+    <p class="reveal"><strong>11 - 15 August 2025</strong></p>
     <p class="reveal"><strong></strong></p>
-    <p class="reveal"><strong> </strong></p>
+    <p class="reveal"><strong></strong></p>
+    <p class="reveal"><strong></strong></p>
+    <p class="reveal"><strong></strong></p>
+  </section>
+
+  <section class="section reveal">
+    <h2 class="reveal">📸 How was last year?</h2>
+
+    <h3 class="reveal">🎮 Games</h3>
+    <div class="slider-container">
+      <div class="slider-track" id="slider-jocuri">
+        <div class="slide"><img src="imagini/jocuri1.jpg" alt="Joc 1"></div>
+        <div class="slide"><img src="imagini/jocuri2.jpg" alt="Joc 2"></div>
+        <div class="slide"><img src="imagini/jocuri3.jpg" alt="Joc 3"></div>
+        <div class="slide"><img src="imagini/jocuri4.jpg" alt="Joc 4"></div>
+        <div class="slide"><img src="imagini/jocuri5.jpg" alt="Joc 5"></div>
+        <div class="slide"><img src="imagini/jocuri6.jpg" alt="Joc 6"></div>
+        <div class="slide"><img src="imagini/jocuri7.jpg" alt="Joc 7"></div>
+        <div class="slide"><img src="imagini/jocuri8.jpg" alt="Joc 8"></div>
+      </div>
+      <div class="slider-buttons">
+        <button onclick="moveSlide('jocuri', -1)">◀</button>
+        <button onclick="moveSlide('jocuri', 1)">▶</button>
+      </div>
+    </div>
+
+    <h3 class="reveal">📖 Bible study</h3>
+    <div class="slider-container">
+      <div class="slider-track" id="slider-studii">
+        <div class="slide"><img src="imagini/studii1.jpg" alt="Studii 1"></div>
+        <div class="slide"><img src="imagini/studii2.jpg" alt="Studii 2"></div>
+        <div class="slide"><img src="imagini/studii3.jpg" alt="Studii 3"></div>
+        <div class="slide"><img src="imagini/studii4.jpg" alt="Studii 4"></div>
+        <div class="slide"><img src="imagini/studii5.jpg" alt="Studii 5"></div>
+        <div class="slide"><img src="imagini/studii6.jpg" alt="Studii 6"></div>
+        <div class="slide"><img src="imagini/studii7.jpg" alt="Studii 7"></div>
+      </div>
+      <div class="slider-buttons">
+        <button onclick="moveSlide('studii', -1)">◀</button>
+        <button onclick="moveSlide('studii', 1)">▶</button>
+      </div>
+    </div>
+
+    <h3 class="reveal">🎵 Worship</h3>
+    <div class="slider-container">
+      <div class="slider-track" id="slider-inchinare">
+        <div class="slide"><img src="imagini/inchinare1.jpg" alt="Închinare 1"></div>
+        <div class="slide"><img src="imagini/inchinare2.jpg" alt="Închinare 2"></div>
+        <div class="slide"><img src="imagini/inchinare3.jpg" alt="Închinare 3"></div>
+        <div class="slide"><img src="imagini/inchinare4.jpg" alt="Închinare 4"></div>
+        <div class="slide"><img src="imagini/inchinare5.jpg" alt="Închinare 5"></div>
+        <div class="slide"><img src="imagini/inchinare6.jpg" alt="Închinare 6"></div>
+        <div class="slide"><img src="imagini/inchinare7.jpg" alt="Închinare 7"></div>
+        <div class="slide"><img src="imagini/inchinare8.jpg" alt="Închinare 8"></div>
+        <div class="slide"><img src="imagini/inchinare9.jpg" alt="Închinare 9"></div>
+        <div class="slide"><img src="imagini/inchinare10.jpg" alt="Închinare 10"></div>
+        <div class="slide"><img src="imagini/inchinare11.jpg" alt="Închinare 11"></div>
+        <div class="slide"><img src="imagini/inchinare12.jpg" alt="Închinare 12"></div>
+      </div>
+      <div class="slider-buttons">
+        <button onclick="moveSlide('inchinare', -1)">◀</button>
+        <button onclick="moveSlide('inchinare', 1)">▶</button>
+      </div>
+    </div>
+  
+
+    <h3 class="reveal">🤗 Friendship</h3>
+    <div class="slider-container">
+      <div class="slider-track" id="slider-prietenie">
+        <div class="slide"><img src="imagini/prietenie1.jpg" alt="Prietenie 1"></div>
+        <div class="slide"><img src="imagini/prietenie2.jpg" alt="Prietenie 2"></div>
+        <div class="slide"><img src="imagini/prietenie3.jpg" alt="Prietenie 3"></div>
+        <div class="slide"><img src="imagini/prietenie4.jpg" alt="Prietenie 4"></div>
+        <div class="slide"><img src="imagini/prietenie5.jpg" alt="Prietenie 5"></div>
+        <div class="slide"><img src="imagini/prietenie6.jpg" alt="Prietenie 6"></div>
+        <div class="slide"><img src="imagini/prietenie7.jpg" alt="Prietenie 7"></div>
+        <div class="slide"><img src="imagini/prietenie8.jpg" alt="Prietenie 8"></div>
+        <div class="slide"><img src="imagini/prietenie9.jpg" alt="Prietenie 9"></div>
+        <div class="slide"><img src="imagini/prietenie10.jpg" alt="Prietenie 10"></div>
+        <div class="slide"><img src="imagini/prietenie11.jpg" alt="Prietenie 11"></div>
+        <div class="slide"><img src="imagini/prietenie12.jpg" alt="Prietenie 12"></div>
+        <div class="slide"><img src="imagini/prietenie13.jpg" alt="Prietenie 13"></div>
+      </div>
+      <div class="slider-buttons">
+        <button onclick="moveSlide('prietenie', -1)">◀</button>
+        <button onclick="moveSlide('prietenie', 1)">▶</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <h2 class="reveal">📢 Anunțuri speciale</h2>
+    <p class="reveal">Urmărește această secțiune pentru informații importante legate de tabără: schimbări de program, transport, lista de obiecte necesare etc.</p>
   </section>
 
   <footer class="reveal">
@@ -83,7 +248,6 @@
 
   <script>
     const reveals = document.querySelectorAll('.reveal');
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -92,11 +256,26 @@
         }
       });
     }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
 
-    reveals.forEach(el => {
-      observer.observe(el);
+    const slideIndex = {};
+    const sliders = ['jocuri', 'studii', 'inchinare', 'prietenie', 'invitati'];
+
+
+    sliders.forEach(section => {
+      slideIndex[section] = 0;
     });
-  </script>
 
+    function moveSlide(section, direction) {
+      const slider = document.getElementById(`slider-${section}`);
+      const slides = slider.querySelectorAll('.slide');
+      slideIndex[section] += direction;
+
+      if (slideIndex[section] < 0) slideIndex[section] = 0;
+      if (slideIndex[section] >= slides.length) slideIndex[section] = slides.length - 1;
+
+      slider.style.transform = `translateX(-${slideIndex[section] * 100}%)`;
+    }
+  </script>
 </body>
 </html>
