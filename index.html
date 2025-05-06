@@ -110,6 +110,60 @@ header {
         transform: translateY(0);
       }
     }
+
+    .team-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.team-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.team-slide {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.team-slide img {
+  width: 40%;
+  max-width: 300px;
+  border-radius: 12px;
+  margin-right: 2rem;
+  object-fit: cover;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.team-description {
+  color: var(--text-main);
+  text-align: left;
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .team-slide {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .team-slide img {
+    width: 80%;
+    margin: 0 0 1rem 0;
+  }
+
+  .team-description {
+    text-align: center;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -131,6 +185,7 @@ header {
     <p class="reveal">Revelation Camp este o tabără de vară dedicată tinerilor care doresc o experiență spirituală profundă, să se conecteze prin închinare, să crească împreună cu alți tineri și să aprofundeze relația cu Dumnezeu.</p>
     <p class="quote reveal">„Am fost răstignit împreună cu Hristos și trăiesc, dar nu mai trăiesc eu, ci Hristos trăiește în mine.” <br>Galateni 2:20</p>
     <p class="reveal">Ai peste 14 ani și vrei să te apropii de Dumnezeu și să îți faci prieteni noi?</p>
+    <p class="quote reveal">Au mai rămas doar cateva locuri!</p>
     <a class="btn-register pulse" href="https://forms.gle/WjQYtLMrpKG6arn37" target="_blank">Înscrie-te acum</a>
     <br>
     <img class="reveal" src="imagini/Afis2025_v2.png" alt="Afiș Revelation Camp 2025" style="width: 30%; max-width: 600px; border-radius: 12px; margin-top: 2rem;">
@@ -156,8 +211,61 @@ header {
     <h2 class="reveal">🎯 Organizare</h2>
     <p class="reveal">Eveniment organizat de Biserica Creștină Penticostală Sfânta Treime. O echipă de slujitori, familii, lideri de tineret.</p>
     <br>
-    <p class="reveal">Echipele organizatorice:</p>
+    <h2 class="reveal">Echipele organizatorice</h2>
+  
+    <div class="team-slider">
+      <div class="team-track" id="team-track">
+        
+        <div class="team-slide">
+          <img src="imagini/EchipaRosie.png" alt="Familia Donea Ionuț, Diana și Lea">
+          <div class="team-description">
+            <h3>Familia Donea Ionuț, Diana și Lea</h3>
+            <p>”Dacă până acum 10 ani trăiam doar pentru poftele lumești, acum am ales să trăiesc prin Isus, pentru că în El am găsit adevărata fericire și tot adevărul! Așadar, în perioada 11-15 august ne vedem în Revelation Camp, ca să învățăm împreună ce înseamnă să trăim prin Isus!”
+            </p>
+          </div>
+        </div>
+  
+        <div class="team-slide">
+          <img src="imagini/EchipaVerde.png" alt="Familia Lazăr Flaviu și Anca">
+          <div class="team-description">
+            <h3>Familia Lazăr Flaviu și Anca</h3>
+            <p></p>
+          </div>
+        </div>
+  
+        <div class="team-slide">
+          <img src="imagini/EchipaGalbena.png" alt="Familia Figan Ruben și Iulia">
+          <div class="team-description">
+            <h3>Familia Figan Ruben și Iulia</h3>
+            <p></p>
+          </div>
+        </div>
+  
+        <div class="team-slide">
+          <img src="imagini/EchipaAlbastra.png" alt="Familia Căpâlna Luis și Bianca">
+          <div class="team-description">
+            <h3>Familia Căpâlna Luis și Bianca</h3>
+            <p></p>
+          </div>
+        </div>
+  
+        <div class="team-slide">
+          <img src="imagini/EchipaAlba.png" alt="Echipa rugăciune">
+          <div class="team-description">
+            <h3>Familia Deneș Cornel, Adina și Aby</h3>
+            <p></p>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+    <div class="slider-buttons">
+      <button onclick="moveTeamSlide(-1)">◀</button>
+      <button onclick="moveTeamSlide(1)">▶</button>
+    </div>
   </section>
+  
 
   <section class="section reveal">
     <h2 class="reveal">📅 Program</h2>
@@ -257,6 +365,10 @@ header {
     <h2 class="reveal">📢 Anunțuri speciale</h2>
     <p class="reveal">Urmărește această secțiune pentru informații importante legate de tabără: schimbări de program, transport, lista de obiecte necesare etc.</p>
     <p class="reveal">Persoana de contact: 0745 796 349 - Cornel Deneș</p>
+    <p class="reveal">Înscrierea în tabără se validează cu plata avansului (300 Ron) - maxim până în 1 Iunie 2025</p>
+    <p class="reveal">Cash sau BT - 0745796349
+      IBAN: RO15BTRLRONCRT0380468501</p>
+      <p class="reveal">Grăbește-te, au mai rămas doar 30 de locuri!</p>
   </section>
 
   <footer class="reveal">
@@ -293,6 +405,15 @@ header {
 
       slider.style.transform = `translateX(-${slideIndex[section] * 100}%)`;
     }
+
+    let teamIndex = 0;
+function moveTeamSlide(direction) {
+  const track = document.getElementById('team-track');
+  const slides = track.querySelectorAll('.team-slide');
+  teamIndex = (teamIndex + direction + slides.length) % slides.length;
+  track.style.transform = `translateX(-${teamIndex * 100}%)`;
+}
+
   </script>
 </body>
 </html>
