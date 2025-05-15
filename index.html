@@ -164,6 +164,51 @@ header {
   }
 }
 
+.countdown-box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+.countdown-box span {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color:white;
+}
+
+.progress-container {
+  max-width: 400px;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.progress-bar {
+  background-color: #1f2d4a;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 20px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.4);
+}
+
+.progress-fill {
+  background-color: #64ffda;
+  height: 100%;
+  width: 0;
+  animation: fillProgress 1.5s ease-out forwards;
+}
+
+@keyframes fillProgress {
+  from { width: 0; }
+  to { width: 75%; }
+}
+
+
   </style>
 </head>
 <body>
@@ -177,6 +222,17 @@ header {
     <p class="subtitle">Această tabără își propune să fie locul de REVELAȚIE pentru generația <span>Z</span>.</p>
   </header>
 
+  <section class="section reveal" id="countdown-section">
+  <h2 class="reveal">⏳ Numărăm zilele până la tabără!</h2>
+  <div id="countdown" class="countdown-box">
+    <span><strong id="days">--</strong> zile</span>
+    <span><strong id="hours">--</strong> ore</span>
+    <span><strong id="minutes">--</strong> minute</span>
+    <span><strong id="seconds">--</strong> secunde</span>
+  </div>
+</section>
+
+
   <section class="section reveal">
     <h2 class="reveal">Revelation Camp 2025</h2>
     <p class="reveal"><strong>Temă:</strong> „Trăiesc prin ISUS”</p>
@@ -185,10 +241,26 @@ header {
     <p class="reveal">Revelation Camp este o tabără de vară dedicată tinerilor care doresc o experiență spirituală profundă, să se conecteze prin închinare, să crească împreună cu alți tineri și să aprofundeze relația cu Dumnezeu.</p>
     <p class="quote reveal">„Am fost răstignit împreună cu Hristos și trăiesc, dar nu mai trăiesc eu, ci Hristos trăiește în mine.” <br>Galateni 2:20</p>
     <p class="reveal">Ai peste 14 ani și vrei să te apropii de Dumnezeu și să îți faci prieteni noi?</p>
-    <p class="quote reveal">Au mai rămas doar cateva locuri!</p>
+   <div class="progress-container reveal">
+  <p class="quote reveal"><strong>Locuri ocupate: 75 din 100</strong></p>
+  <div class="progress-bar">
+    <div class="progress-fill" style="width: 75%"></div>
+  </div>
+</div>
+
     <a class="btn-register pulse" href="https://forms.gle/WjQYtLMrpKG6arn37" target="_blank">Înscrie-te acum</a>
     <br>
     <img class="reveal" src="imagini/Afis2025_v2.png" alt="Afiș Revelation Camp 2025" style="width: 30%; max-width: 600px; border-radius: 12px; margin-top: 2rem;">
+ <div class="share-instagram reveal">
+  <button onclick="shareToInstagram()">Vin în Revelation Camp</button>
+  <p id="share-message" style="display:none;">
+    📸 Postează un story pe Instagram<br>
+    <em>Posteaza un story pe Instagram cu imaginea descărcată, dă-ne un tag🔥🔥</em>
+  </p>
+</div>
+
+
+ 
   </section>
 
   <section class="section reveal"> 
@@ -229,7 +301,7 @@ header {
           <img src="imagini/EchipaVerde.png" alt="Familia Lazăr Flaviu și Anca">
           <div class="team-description">
             <h3>Familia Lazăr Flaviu și Anca</h3>
-            <p></p>
+            <p>"Vă salut! A fost o perioadă în viața mea în care inima îmi era plină de tot ce putea oferi lumea aceasta, și totuși simțeam un gol. Golul acela am reușit să îl umplu atunci când am mers la biserică cu inima deschisă pentru tot ce se întâmpla acolo — așa a început trăirea mea prin Isus! Dacă vrei să ai parte și tu de astfel de experiențe, te așteptăm la Revelation Camp, în perioada 11–15 August, la Herina, să descoperim împreună ce înseamnă să trăim prin Isus!"</p>
           </div>
         </div>
   
@@ -237,7 +309,7 @@ header {
           <img src="imagini/EchipaGalbena.png" alt="Familia Figan Ruben și Iulia">
           <div class="team-description">
             <h3>Familia Figan Ruben și Iulia</h3>
-            <p></p>
+            <p>""</p>
           </div>
         </div>
   
@@ -368,7 +440,6 @@ header {
     <p class="reveal">Înscrierea în tabără se validează cu plata avansului (300 Ron) - maxim până în 1 Iunie 2025</p>
     <p class="reveal">Cash sau BT - 0745796349
       IBAN: RO15BTRLRONCRT0380468501</p>
-      <p class="reveal">Grăbește-te, au mai rămas doar 30 de locuri!</p>
   </section>
 
   <footer class="reveal">
@@ -412,6 +483,43 @@ function moveTeamSlide(direction) {
   const slides = track.querySelectorAll('.team-slide');
   teamIndex = (teamIndex + direction + slides.length) % slides.length;
   track.style.transform = `translateX(-${teamIndex * 100}%)`;
+}
+
+function updateCountdown() {
+  const targetDate = new Date("2025-08-11T00:00:00").getTime();
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  if (distance < 0) {
+    document.getElementById("countdown").innerHTML = "Tabăra a început!";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("days").textContent = days;
+  document.getElementById("hours").textContent = hours;
+  document.getElementById("minutes").textContent = minutes;
+  document.getElementById("seconds").textContent = seconds;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+
+function shareToInstagram() {
+  const imageUrl = 'imagini/Insta.png';
+  const link = document.createElement('a');
+  link.href = imageUrl;
+  link.download = 'RevelationCamp_Insta.png';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  document.getElementById('share-message').style.display = 'block';
 }
 
   </script>
