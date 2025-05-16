@@ -223,5 +223,105 @@
   color: var(--text-light);
 }
 
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25D366;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float img {
+  width: 32px;
+  height: 32px;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-float::after {
+  content: "Contactați-ne în privat";
+  position: absolute;
+  right: 70px;
+  background-color: #fff;
+  color: #000;
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  border-radius: 8px;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.whatsapp-float:hover::after {
+  opacity: 1;
+}
+
+.team-description span {
+  color: var(--accent);
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.instagram-float {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.instagram-float img {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0) invert(1); /* Face iconița albă pe gradient colorat */
+}
+
+.instagram-float:hover {
+  transform: scale(1.1);
+}
+
+.instagram-float::after {
+  content: "Urmărește-ne pe Instagram";
+  position: absolute;
+  left: 70px;
+  background-color: #fff;
+  color: #000;
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  border-radius: 8px;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.instagram-float:hover::after {
+  opacity: 1;
+}
+
+
+
 
   
