@@ -495,3 +495,34 @@ footer {
     width: 80%;
   }
 }
+
+.logo-fixed {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.logo-fixed img {
+  height: 45px !important;
+  width: auto !important;
+  max-width: none !important;
+}
+
+.poster-img {
+  width: 30%;
+  max-width: 600px;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  .logo-fixed img {
+    height: 35px !important;
+  }
+
+  .poster-img {
+    width: 80%;
+  }
+}
